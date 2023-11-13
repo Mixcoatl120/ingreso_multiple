@@ -1,4 +1,4 @@
-﻿from flask import Flask,render_template,request,redirect,url_for
+﻿from flask import Flask,render_template,request,redirect,url_for,flash
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -31,7 +31,7 @@ def agregar_usuario():
     nuevo_usuario = Usuario(nombre=nombre, email=email)
     db.session.add(nuevo_usuario)
     db.session.commit()
-
+    flash(f'Se ha agregado correctamente a {nombre}', 'success')  # Mensaje de éxito
     return render_template('index.html',usuarios=usuarios)
 
 if __name__ == '__main__':
