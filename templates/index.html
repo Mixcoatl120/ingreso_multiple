@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Usuarios</title>
+    <script src="{{url_for ('static',filename = 'js/funciones.js')}}"></script>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+    <ul>
+        {% for usuario in usuarios %}
+        <li>{{ usuario.nombre }} - {{ usuario.email }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>ingresos multiples</h2>
+    <form action="{{ url_for('agregar_usuario') }}" method="post">
+        <label for="rs">Razon Social:</label>
+        <input type="text" name="rs" value="{{ request.form['rs']  }}" required>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" value="{{ request.form['nombre']  }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email">
+
+        <button type="submit">Agregar Usuario</button>
+    </form>
+</body>
+</html>
